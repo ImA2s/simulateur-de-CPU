@@ -1,0 +1,23 @@
+.DATA
+x DW 5
+y DB 2
+z DB 5
+.CODE
+start: MOV DX,25
+loop: ADD DX,5
+PUSH DX
+CMP 40,DX
+JS stack
+JMP loop
+stack: POP
+CMP 30,AX
+JZ next
+JMP stack
+next: ADD CX,DX
+MOV AX,10
+MOV BX,1
+ALLOC
+MOV AX,5
+MOV [ES:AX],18
+MOV BX,[ES:AX]
+FREE
